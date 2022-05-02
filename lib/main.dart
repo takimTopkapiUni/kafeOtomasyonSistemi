@@ -11,6 +11,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  String adminKullaniciAdi = "admin";
+  String adminKullaniciSifresi = "1234";
+  late String alinanKullanici,alinanSifre;
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -150,6 +154,11 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 TextFormField(
+                  onChanged: (kullaniciIsmi) {
+                    setState(() {
+                      alinanKullanici = kullaniciIsmi;
+                    });
+                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -162,6 +171,11 @@ class _MyAppState extends State<MyApp> {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
+                  onChanged: (kullaniciSifre) {
+                    setState(() {
+                      alinanSifre = kullaniciSifre;
+                    });
+                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -180,7 +194,12 @@ class _MyAppState extends State<MyApp> {
           ElevatedButton(
             child: Text("GİRİŞ YAP"),
             onPressed: () {
-              print("Giriş Yapıldı");
+              if(alinanKullanici == adminKullaniciAdi && alinanSifre == adminKullaniciSifresi){
+                print("tebrikler");
+              }
+              else{
+                print("hatali");
+              }
             },
             
           )
