@@ -18,6 +18,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const AnaSayfa();
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Kafe Otomasyon',
+      home: AnaSayfa(),
+    );
   }
 }
