@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/RezervePage.dart';
 
+import '../widgets/masa_olustur.dart';
+
 class MasaPage extends StatefulWidget {
   const MasaPage({Key? key}) : super(key: key);
 
@@ -31,71 +33,24 @@ class _MasaPageState extends State<MasaPage> {
                   padding: const EdgeInsets.all(5),
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 30,
-                  children: <Widget>[
-                    MasaOlustur(1, "Dolu"),
-                    MasaOlustur(2, "Boş"),
-                    MasaOlustur(3, "Dolu"),
-                    MasaOlustur(4, "Boş"),
-                    MasaOlustur(5, "Dolu"),
-                    MasaOlustur(6, "Dolu"),
-                    MasaOlustur(7, "Dolu"),
-                    MasaOlustur(8, "Dolu"),
-                    MasaOlustur(9, "Dolu"),
-                    MasaOlustur(10, "Dolu"),
-                    MasaOlustur(11, "Dolu"),
-                    MasaOlustur(12, "Dolu"),
+                  children: const <Widget>[
+                    MasaOlustur(masaNo: 1, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 2, doluMu: "Boş"),
+                    MasaOlustur(masaNo: 3, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 4, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 5, doluMu: "Boş"),
+                    MasaOlustur(masaNo: 6, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 7, doluMu: "Boş"),
+                    MasaOlustur(masaNo: 8, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 9, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 10, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 11, doluMu: "Dolu"),
+                    MasaOlustur(masaNo: 12, doluMu: "Dolu"),
                   ],
                 ),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  //*Masaları oluşturduğumuz method
-  MasaOlustur(int masaNo, String doluMu) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.only(top: 25),
-        alignment: Alignment.centerRight,
-        color: Colors.green,
-        width: 125,
-        height: 125,
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.topCenter,
-              child: Text(
-                "Masa $masaNo : $doluMu",
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              color: Colors.black,
-              height: 3,
-              width: 175,
-            ),
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.green.shade200),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RezervePage()));
-                  print("Masa $masaNo Rezerve Edildi");
-                },
-                child: const Text(
-                  "Rezerve Et",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-              ),
-            )
-          ],
         ),
       ),
     );
