@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356092211109",
+    "project_id": "kafeuygulamasi",
+    "storage_bucket": "kafeuygulamasi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356092211109:android:8496f428b52a0ffc02424c",
+        "android_client_info": {
+          "package_name": "com.example.kafe_uygulamasi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356092211109-s2h59g05tuemgito7o0e927pvi8qcqs9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClnxeGRZLerJi62eVh8tC9pw9zlk_EJYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356092211109-s2h59g05tuemgito7o0e927pvi8qcqs9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
