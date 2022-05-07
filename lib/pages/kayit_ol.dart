@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'kayit_ol.dart';
-
-class RezervePage extends StatefulWidget {
-  const RezervePage({Key? key}) : super(key: key);
+class KayitOl extends StatefulWidget {
+  const KayitOl({Key? key}) : super(key: key);
 
   @override
-  State<RezervePage> createState() => _RezervePageState();
+  State<KayitOl> createState() => _KayitOlState();
 }
 
-class _RezervePageState extends State<RezervePage> {
+class _KayitOlState extends State<KayitOl> {
   @override
-  String musteriKullaniciAdi = "musteri";
-  String musteriKullaniciSifresi = "m1234";
+  String musteriKullaniciAdi = "";
+  String musteriKullaniciSifresi = "";
   late String alinanKullanici, alinanSifre;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,30 +72,21 @@ class _RezervePageState extends State<RezervePage> {
               ),
             ),
             const SizedBox(height: 25),
-
-            //* Giriş Yap Butonu
+            //* Kayıt Ol Butonu
             ElevatedButton(
-              child: const Text("GİRİŞ YAP"),
+              child: const Text("KAYIT OL"),
               onPressed: () {
-                if (alinanKullanici == musteriKullaniciAdi &&
-                    alinanSifre == musteriKullaniciSifresi) {
-                  print("tebrikler");
-                } else {
-                  print("hatali");
-                }
-              },
-            ),
-            //*Kayıt olma ekranına yönlendiren buton.
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const KayitOl(),
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.blueAccent.shade400,
+                    content: Text(
+                      "Kullanici Adi: $alinanKullanici\nSifre: $alinanSifre",
+                      style: const TextStyle(
+                          fontSize: 18),
+                    ), //*Girilen değerlerin sisteme kayıt edilidğini kontrol etme amaçlı yapıldı.
                   ),
                 );
               },
-              child: const Text("Hesabınız yok mu?"),
             ),
           ],
         ),

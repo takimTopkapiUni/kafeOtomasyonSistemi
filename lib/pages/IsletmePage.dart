@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kafe_uygulamasi/pages/kayit_ol.dart';
 
 class IsletmePage extends StatefulWidget {
   const IsletmePage({Key? key}) : super(key: key);
@@ -83,7 +84,7 @@ class _IsletmePageState extends State<IsletmePage> {
                 print("hatali");
               }
             },
-          )
+          ),
         ],
       ),
     );
