@@ -11,9 +11,6 @@ class RezervePage extends StatefulWidget {
 
 class _RezervePageState extends State<RezervePage> {
   @override
-  String musteriKullaniciAdi = "musteri";
-  String musteriKullaniciSifresi = "m1234";
-  late String alinanKullanici, alinanSifre;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +37,7 @@ class _RezervePageState extends State<RezervePage> {
                 children: [
                   TextFormField(
                     onChanged: (kullaniciIsmi) {
-                      setState(() {
-                        alinanKullanici = kullaniciIsmi;
-                      });
+                      
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -57,9 +52,7 @@ class _RezervePageState extends State<RezervePage> {
                   const SizedBox(height: 10),
                   TextFormField(
                     onChanged: (kullaniciSifre) {
-                      setState(() {
-                        alinanSifre = kullaniciSifre;
-                      });
+                    
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -80,12 +73,7 @@ class _RezervePageState extends State<RezervePage> {
             ElevatedButton(
               child: const Text("GİRİŞ YAP"),
               onPressed: () {
-                if (alinanKullanici == musteriKullaniciAdi &&
-                    alinanSifre == musteriKullaniciSifresi) {
-                  print("tebrikler");
-                } else {
-                  print("hatali");
-                }
+                
               },
             ),
             //*Kayıt olma ekranına yönlendiren buton.
