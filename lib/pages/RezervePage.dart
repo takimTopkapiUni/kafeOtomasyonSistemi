@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'kayit_ol.dart';
 
 class RezervePage extends StatefulWidget {
@@ -11,7 +12,8 @@ class RezervePage extends StatefulWidget {
 
 class _RezervePageState extends State<RezervePage> {
   @override
-
+  late String email,parola;
+  var _formAnahtari = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +35,14 @@ class _RezervePageState extends State<RezervePage> {
               ),
             ),
             Form(
+              key: _formAnahtari,
               child: Column(
                 children: [
                   TextFormField(
-                    onChanged: (kullaniciIsmi) {
-                      
+                    onChanged: (alinanMail) {
+                      setState(() {
+                        email = alinanMail;
+                      });
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -51,8 +56,8 @@ class _RezervePageState extends State<RezervePage> {
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    onChanged: (kullaniciSifre) {
-                    
+                    onChanged: (alinanParola) {
+                    parola = alinanParola;
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -73,7 +78,7 @@ class _RezervePageState extends State<RezervePage> {
             ElevatedButton(
               child: const Text("GİRİŞ YAP"),
               onPressed: () {
-                
+                girisYap();
               },
             ),
             //*Kayıt olma ekranına yönlendiren buton.
@@ -92,5 +97,12 @@ class _RezervePageState extends State<RezervePage> {
         ),
       ),
     );
+  }
+  void girisYap() {
+    if(_formAnahtari.currentState!.validate()){
+     FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: parola).then((user) {
+       Navigator.push(context, MaterialPageRoute(builder: (_)=>AnaSayfa()));
+     });
+    }
   }
 }
