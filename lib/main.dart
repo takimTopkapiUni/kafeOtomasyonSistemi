@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
-
-void main() => runApp(const MyApp());
+import 'package:firebase_core/firebase_core.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MaterialApp(
+    theme: ThemeData.dark(),
+    debugShowCheckedModeBanner: false,
+    home: AnaSayfa(),
+  ));
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

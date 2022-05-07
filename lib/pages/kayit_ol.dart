@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
+import 'package:kafe_uygulamasi/pages/IsletmePage.dart';
 
 class KayitOl extends StatefulWidget {
   const KayitOl({Key? key}) : super(key: key);
@@ -9,9 +12,8 @@ class KayitOl extends StatefulWidget {
 
 class _KayitOlState extends State<KayitOl> {
   @override
-  String musteriKullaniciAdi = "";
-  String musteriKullaniciSifresi = "";
-  late String alinanKullanici, alinanSifre;
+  late String kullaniciAdi, parola;
+  var _formAnahtari = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,29 +35,30 @@ class _KayitOlState extends State<KayitOl> {
               ),
             ),
             Form(
+              key: _formAnahtari,
               child: Column(
                 children: [
                   TextFormField(
-                    onChanged: (kullaniciIsmi) {
+                    onChanged: (alinanAd) {
                       setState(() {
-                        alinanKullanici = kullaniciIsmi;
+                        kullaniciAdi = alinanAd;
                       });
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      labelText: "Kullanıcı Adı",
+                      labelText: "kullanıcı adı",
                       labelStyle: const TextStyle(color: Colors.black),
-                      hintText: "Kullanıcı Adını Giriniz",
+                      hintText: "kullanıcı adı Giriniz",
                       hintStyle: const TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    onChanged: (kullaniciSifre) {
+                    onChanged: (alinanParola) {
                       setState(() {
-                        alinanSifre = kullaniciSifre;
+                        parola = alinanParola;
                       });
                     },
                     decoration: InputDecoration(
@@ -76,16 +79,7 @@ class _KayitOlState extends State<KayitOl> {
             ElevatedButton(
               child: const Text("KAYIT OL"),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Colors.blueAccent.shade400,
-                    content: Text(
-                      "Kullanici Adi: $alinanKullanici\nSifre: $alinanSifre",
-                      style: const TextStyle(
-                          fontSize: 18),
-                    ), //*Girilen değerlerin sisteme kayıt edilidğini kontrol etme amaçlı yapıldı.
-                  ),
-                );
+                kayitEkle();
               },
             ),
           ],
@@ -93,4 +87,12 @@ class _KayitOlState extends State<KayitOl> {
       ),
     );
   }
+    void kayitEkle() {
+   if(_formAnahtari.currentState!.validate()){
+     FirebaseAuth.instance.createUserWithEmailAndPassword(email: kullaniciAdi, password: parola).then((user) {
+       Navigator.push(context, MaterialPageRoute(builder: (_) => AnaSayfa()));
+     });
+   }
+  }
 }
+
