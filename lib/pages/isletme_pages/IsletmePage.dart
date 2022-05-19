@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/kayit_ol.dart';
 
+import 'Isletme_AnaSayfa.dart';
+
 class IsletmePage extends StatefulWidget {
   const IsletmePage({Key? key}) : super(key: key);
 
@@ -80,6 +82,13 @@ class _IsletmePageState extends State<IsletmePage> {
               if (alinanKullanici == adminKullaniciAdi &&
                   alinanSifre == adminKullaniciSifresi) {
                 print("tebrikler");
+               Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const IsletmeAnaSayfa(),
+                  ),
+                );
+                
               } else {
                 print("hatali");
               }

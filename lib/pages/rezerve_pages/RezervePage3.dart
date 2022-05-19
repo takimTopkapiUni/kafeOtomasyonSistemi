@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'kayit_ol.dart';
 
-class RezervePage2 extends StatefulWidget {
-  const RezervePage2({Key? key}) : super(key: key);
-//Masa 3 Rezerve Sayfası
+import '../kayit_ol.dart';
+
+
+class RezervePage3 extends StatefulWidget {
+  const RezervePage3({Key? key}) : super(key: key);
+//Masa 4 Rezerve Sayfası
   @override
-  State<RezervePage2> createState() => _RezervePageState();
+  State<RezervePage3> createState() => _RezervePageState();
 }
 
-class _RezervePageState extends State<RezervePage2> {
+class _RezervePageState extends State<RezervePage3> {
   @override
   late String email, parola;
   var _formAnahtari = GlobalKey<FormState>();

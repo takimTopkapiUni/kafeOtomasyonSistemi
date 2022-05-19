@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
-import 'package:kafe_uygulamasi/pages/IsletmePage.dart';
+
 
 class KayitOl extends StatefulWidget {
   const KayitOl({Key? key}) : super(key: key);

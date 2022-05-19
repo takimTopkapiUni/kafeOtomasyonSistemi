@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'kayit_ol.dart';
+
+import '../kayit_ol.dart';
+
 
 class RezervePage1 extends StatefulWidget {
   const RezervePage1({Key? key}) : super(key: key);

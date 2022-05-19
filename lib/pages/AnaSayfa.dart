@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/IsletmePage.dart';
 import 'package:kafe_uygulamasi/pages/MasaPage.dart';
+
+import 'isletme_pages/IsletmePage.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({Key? key}) : super(key: key);

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'kayit_ol.dart';
+import '../kayit_ol.dart';
 
-class RezervePage extends StatefulWidget {
-  const RezervePage({Key? key}) : super(key: key);
 
+class RezervePage2 extends StatefulWidget {
+  const RezervePage2({Key? key}) : super(key: key);
+//Masa 3 Rezerve Sayfası
   @override
-  State<RezervePage> createState() => _RezervePageState();
+  State<RezervePage2> createState() => _RezervePageState();
 }
 
-class _RezervePageState extends State<RezervePage> {
+class _RezervePageState extends State<RezervePage2> {
   @override
-  late String email,parola;
+  late String email, parola;
   var _formAnahtari = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _RezervePageState extends State<RezervePage> {
                   const SizedBox(height: 10),
                   TextFormField(
                     onChanged: (alinanParola) {
-                    parola = alinanParola;
+                      parola = alinanParola;
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -98,11 +99,14 @@ class _RezervePageState extends State<RezervePage> {
       ),
     );
   }
+
   void girisYap() {
-    if(_formAnahtari.currentState!.validate()){
-     FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: parola).then((user) {
-       Navigator.push(context, MaterialPageRoute(builder: (_)=>AnaSayfa()));
-     });
+    if (_formAnahtari.currentState!.validate()) {
+      FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: parola)
+          .then((user) {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => AnaSayfa()));
+      });
     }
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/RezervePage2.dart';
-import '../pages/RezervePage.dart';
 
+import '../pages/rezerve_pages/RezervePage2.dart';
 //*Masaları oluşturduğumuz Widget
 class MasaOlustur2 extends StatelessWidget {
   const MasaOlustur2({Key? key, required this.masaNo, required this.doluMu})
