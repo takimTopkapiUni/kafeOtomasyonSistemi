@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/RezervePage.dart';
+import 'package:kafe_uygulamasi/widgets/masa_olustur1.dart';
+import 'package:kafe_uygulamasi/widgets/masa_olustur2.dart';
+import 'package:kafe_uygulamasi/widgets/masa_olustur3.dart';
 
 import '../widgets/masa_olustur.dart';
 
@@ -35,17 +38,9 @@ class _MasaPageState extends State<MasaPage> {
                   mainAxisSpacing: 30,
                   children: const <Widget>[
                     MasaOlustur(masaNo: 1, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 2, doluMu: "Boş"),
-                    MasaOlustur(masaNo: 3, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 4, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 5, doluMu: "Boş"),
-                    MasaOlustur(masaNo: 6, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 7, doluMu: "Boş"),
-                    MasaOlustur(masaNo: 8, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 9, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 10, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 11, doluMu: "Dolu"),
-                    MasaOlustur(masaNo: 12, doluMu: "Dolu"),
+                    MasaOlustur1(masaNo: 2, doluMu: "Boş"),
+                    MasaOlustur2(masaNo: 3, doluMu: "Dolu"),
+                    MasaOlustur3(masaNo: 4, doluMu: "Dolu"),
                   ],
                 ),
               ),
