@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/men%C3%BC_pages/Masa3Menu.dart';
-import 'package:kafe_uygulamasi/pages/rezerve_pages/RezervePage2.dart';
+import 'package:kafe_uygulamasi/pages/isletme_pages/menu_pages/Masa3Menu.dart';
 
 //*Masaları oluşturduğumuz Widget
 class IsletmeMasa3 extends StatelessWidget {
