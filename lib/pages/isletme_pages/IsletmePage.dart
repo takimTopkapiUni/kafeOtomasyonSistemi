@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/kayit_ol.dart';
 
 import 'Isletme_AnaSayfa.dart';
 
@@ -12,8 +11,8 @@ class IsletmePage extends StatefulWidget {
 
 class _IsletmePageState extends State<IsletmePage> {
   @override
-  String adminKullaniciAdi = "admin";
-  String adminKullaniciSifresi = "1234";
+  String adminKullaniciAdi = "a";
+  String adminKullaniciSifresi = "a";
   late String alinanKullanici, alinanSifre;
 
   @override
