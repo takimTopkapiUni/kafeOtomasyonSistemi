@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_core/firebase_core.dart';
-void main () async {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -13,9 +14,6 @@ void main () async {
   ));
 }
 
-
-
-
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
 
@@ -25,7 +23,7 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   @override
-  late String id,name,price;
+  late String id, name, price;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +35,9 @@ class _MenuState extends State<Menu> {
               child: Column(
                 children: [
                   TextFormField(
-                    onChanged: (String Id){
+                    onChanged: (String Id) {
                       setState(() {
-                        id=Id;
+                        id = Id;
                       });
                     },
                     decoration: InputDecoration(
@@ -52,9 +50,9 @@ class _MenuState extends State<Menu> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
-                    onChanged: (String ad){
+                    onChanged: (String ad) {
                       setState(() {
-                        name=ad;
+                        name = ad;
                       });
                     },
                     decoration: InputDecoration(
@@ -67,9 +65,9 @@ class _MenuState extends State<Menu> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
-                    onChanged: (String fiyat){
+                    onChanged: (String fiyat) {
                       setState(() {
-                        price=fiyat;
+                        price = fiyat;
                       });
                     },
                     decoration: InputDecoration(
@@ -106,82 +104,71 @@ class _MenuState extends State<Menu> {
                   child: const Text("Ürün Güncelle"),
                 ),
               ],
-            ),   
-            
+            ),
             StreamBuilder(
               stream: FirebaseFirestore.instance.collection('menu').snapshots(),
-              
-              builder: (BuildContext context, AsyncSnapshot alinanVeri){
-                if(alinanVeri.hasError) {
+              builder: (BuildContext context, AsyncSnapshot alinanVeri) {
+                if (alinanVeri.hasError) {
                   return const Text("aktarim basarasiz");
-                } else if(alinanVeri == null) {
+                } else if (alinanVeri == null) {
                   return const CircularProgressIndicator();
-                } else{
-                  
+                } else {
                   print("GELMESI LAZIM");
                   return ListView.builder(
-                    
-                    shrinkWrap: true,
-                    itemCount: alinanVeri.data.doc.length,
-                    
-                    itemBuilder: (context, index){
-                      DocumentSnapshot satirVerisi = alinanVeri.data.doc[index];
-                      
-                      return Padding(padding: const EdgeInsets.all(5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Expanded(child: Text(satirVerisi['id'])),
-                            Expanded(child: Text(satirVerisi['product'])),
-                            Expanded(child: Text(satirVerisi['price'])),
-                            
+                      shrinkWrap: true,
+                      itemCount: alinanVeri.data.doc.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot satirVerisi =
+                            alinanVeri.data.doc[index];
 
-                          ],
-                        ),
-                      );
-                    });
+                        return Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(child: Text(satirVerisi['id'])),
+                              Expanded(child: Text(satirVerisi['product'])),
+                              Expanded(child: Text(satirVerisi['price'])),
+                            ],
+                          ),
+                        );
+                      });
                 }
               },
-
-
             )
-            
           ],
-          
         ),
       ),
     );
   }
-  void veriEkle(){
-    DocumentReference veriYolu = FirebaseFirestore.instance.collection('menu').doc(id);
-    Map<String, dynamic> urunler = {
-      'id' : id,
-      'product' : name,
-      'price' : price
-    };
-    veriYolu.set(urunler).whenComplete(() => {
-      Fluttertoast.showToast(msg: "ürün eklendi")
-    });
+
+  void veriEkle() {
+    DocumentReference veriYolu =
+        FirebaseFirestore.instance.collection('menu').doc(id);
+    Map<String, dynamic> urunler = {'id': id, 'product': name, 'price': price};
+    veriYolu
+        .set(urunler)
+        .whenComplete(() => {Fluttertoast.showToast(msg: "ürün eklendi")});
   }
-  void veriSil(){
-    DocumentReference veriSil = FirebaseFirestore.instance.collection('menu').doc(id);
-    veriSil.delete().whenComplete(() => {
-      Fluttertoast.showToast(msg: "ürün silindi")
-    });
+
+  void veriSil() {
+    DocumentReference veriSil =
+        FirebaseFirestore.instance.collection('menu').doc(id);
+    veriSil
+        .delete()
+        .whenComplete(() => {Fluttertoast.showToast(msg: "ürün silindi")});
   }
-  void veriGuncelle(){
-    DocumentReference veriGuncellemeYolu = FirebaseFirestore.instance.collection('menu').doc(id);
+
+  void veriGuncelle() {
+    DocumentReference veriGuncellemeYolu =
+        FirebaseFirestore.instance.collection('menu').doc(id);
     Map<String, dynamic> guncellenecekVeri = {
-      'id' : id,
-      'product' : name,
-      'price' : price
+      'id': id,
+      'product': name,
+      'price': price
     };
-    veriGuncellemeYolu.update(guncellenecekVeri).whenComplete(() => {
-      Fluttertoast.showToast(msg: "ürün güncellendi")
-    });
+    veriGuncellemeYolu
+        .update(guncellenecekVeri)
+        .whenComplete(() => {Fluttertoast.showToast(msg: "ürün güncellendi")});
   }
-
-
-   
-
 }

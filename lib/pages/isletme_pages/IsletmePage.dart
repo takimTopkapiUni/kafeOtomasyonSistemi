@@ -38,11 +38,6 @@ class _IsletmePageState extends State<IsletmePage> {
             child: Column(
               children: [
                 TextFormField(
-                  onChanged: (kullaniciIsmi) {
-                    setState(() {
-                      alinanKullanici = kullaniciIsmi;
-                    });
-                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -52,14 +47,14 @@ class _IsletmePageState extends State<IsletmePage> {
                     hintText: "Kullanıcı Adını Giriniz",
                     hintStyle: const TextStyle(color: Colors.black),
                   ),
+                  onChanged: (kullaniciIsmi) {
+                    setState(() {
+                      alinanKullanici = kullaniciIsmi;
+                    });
+                  },
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
-                  onChanged: (kullaniciSifre) {
-                    setState(() {
-                      alinanSifre = kullaniciSifre;
-                    });
-                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -69,6 +64,11 @@ class _IsletmePageState extends State<IsletmePage> {
                     hintText: "Şifrenizi Giriniz",
                     hintStyle: const TextStyle(color: Colors.black),
                   ),
+                  onChanged: (kullaniciSifre) {
+                    setState(() {
+                      alinanSifre = kullaniciSifre;
+                    });
+                  },
                 ),
               ],
             ),
@@ -81,13 +81,12 @@ class _IsletmePageState extends State<IsletmePage> {
               if (alinanKullanici == adminKullaniciAdi &&
                   alinanSifre == adminKullaniciSifresi) {
                 print("tebrikler");
-               Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const IsletmeAnaSayfa(),
                   ),
                 );
-                
               } else {
                 print("hatali");
               }

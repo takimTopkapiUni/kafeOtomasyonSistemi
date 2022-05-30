@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../kayit_ol.dart';
+import 'package:email_validator/email_validator.dart';
 
 class RezervePage extends StatefulWidget {
   const RezervePage({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class RezervePage extends StatefulWidget {
 
 class _RezervePageState extends State<RezervePage> {
   @override
-  late String email,parola;
+  late String email, parola;
   var _formAnahtari = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -39,25 +40,49 @@ class _RezervePageState extends State<RezervePage> {
               child: Column(
                 children: [
                   TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType
+                        .emailAddress, // Klavyede @ işaretini öne çıkarıyor
                     onChanged: (alinanMail) {
                       setState(() {
                         email = alinanMail;
                       });
                     },
+                    validator: (alinanMail) {
+                      if (alinanMail!.isEmpty) {
+                        return "Mail boş bırakılamaz";
+                      }
+                      //Hatalı mail girildiğinde bu uyarı çıkacak
+                      else if (!EmailValidator.validate(alinanMail)) {
+                        return "Geçerli mail giriniz";
+                      } else {
+                        return null;
+                      }
+                    },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      labelText: "Kullanıcı Adı",
+                      labelText: "Email",
                       labelStyle: const TextStyle(color: Colors.black),
-                      hintText: "Kullanıcı Adını Giriniz",
+                      hintText: "Mailinizi Giriniz",
                       hintStyle: const TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (alinanParola) {
-                    parola = alinanParola;
+                      parola = alinanParola;
+                    },
+                    validator: (alinanParola) {
+                      if (alinanParola!.isEmpty) {
+                        return "Şifre boş bırakılamaz";
+                      } else if (alinanParola.length < 6) {
+                        return "Şifre en az 6 karakter olmalı";
+                      } else {
+                        return null;
+                      }
                     },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -98,11 +123,14 @@ class _RezervePageState extends State<RezervePage> {
       ),
     );
   }
+
   void girisYap() {
-    if(_formAnahtari.currentState!.validate()){
-     FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: parola).then((user) {
-       Navigator.push(context, MaterialPageRoute(builder: (_)=>AnaSayfa()));
-     });
+    if (_formAnahtari.currentState!.validate()) {
+      FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: parola)
+          .then((user) {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => AnaSayfa()));
+      });
     }
   }
 }
