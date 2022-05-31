@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/Menu.dart';
+import 'package:kafe_uygulamasi/pages/isletme_pages/Menu.dart';
 import 'package:kafe_uygulamasi/pages/isletme_pages/IsletmeMasa.dart';
 
 class IsletmeAnaSayfa extends StatelessWidget {

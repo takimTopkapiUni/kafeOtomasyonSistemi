@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/rezerve_pages/MasaPage.dart';
 
-import 'isletme_pages/IsletmePage.dart';
+import 'masalar/Masa2/Masa2_Menu.dart';
+import 'masalar/Masa2/Masa2_Sepet.dart';
 
-class AnaSayfa extends StatefulWidget {
-  const AnaSayfa({Key? key}) : super(key: key);
+class Masa2_Musteri extends StatefulWidget {
+  const Masa2_Musteri({Key? key}) : super(key: key);
 
   @override
-  State<AnaSayfa> createState() => _AnaSayfaState();
+  State<Masa2_Musteri> createState() => _Masa2_MusteriState();
 }
 
-class _AnaSayfaState extends State<AnaSayfa> {
+// Müşteri MASA 2
+class _Masa2_MusteriState extends State<Masa2_Musteri> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -20,10 +21,10 @@ class _AnaSayfaState extends State<AnaSayfa> {
           bottom: const TabBar(
             tabs: [
               Tab(
-                text: "MÜŞTERİ",
+                text: "MENÜ",
               ),
               Tab(
-                text: "İŞLETME",
+                text: "SEPETİM",
               ),
             ],
           ),
@@ -31,7 +32,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
           title: const Text('Kafe Otomasyon Sistemi'),
         ),
         body: const TabBarView(
-          children: [MasaPage(), IsletmePage()],
+          children: [Masa2_Menu(), Masa2_Sepet()],
         ),
       ),
     );

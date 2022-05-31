@@ -1,18 +1,17 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:kafe_uygulamasi/pages/AnaSayfa.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../musteri_pages/Masa1_Musteri.dart';
+import 'kayit_ol.dart';
+import 'package:email_validator/email_validator.dart';
 
-import '../kayit_ol.dart';
+class RezervePage extends StatefulWidget {
+  const RezervePage({Key? key}) : super(key: key);
 
-class RezervePage1 extends StatefulWidget {
-  const RezervePage1({Key? key}) : super(key: key);
-//Masa 2 Rezerve Sayfası
   @override
-  State<RezervePage1> createState() => _RezervePageState();
+  State<RezervePage> createState() => _RezervePageState();
 }
 
-class _RezervePageState extends State<RezervePage1> {
+class _RezervePageState extends State<RezervePage> {
   @override
   late String email, parola;
   var _formAnahtari = GlobalKey<FormState>();
@@ -130,7 +129,8 @@ class _RezervePageState extends State<RezervePage1> {
       FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: parola)
           .then((user) {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => AnaSayfa()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => Masa1_Musteri()));
       });
     }
   }

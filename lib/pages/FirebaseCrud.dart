@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'Menu.dart';
-void main () async {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -22,7 +20,6 @@ class FirebaseCrud extends StatefulWidget {
 }
 
 class _FirebaseCrudState extends State<FirebaseCrud> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,35 +32,34 @@ class _FirebaseCrudState extends State<FirebaseCrud> {
           children: [
             StreamBuilder(
               stream: FirebaseFirestore.instance.collection('menu').snapshots(),
-
-              builder: (BuildContext context, AsyncSnapshot alinanVeri){
-                if(alinanVeri.hasError)return Text("aktarim basarasiz");
-                else if(alinanVeri == null) return CircularProgressIndicator();
-                else{
+              builder: (BuildContext context, AsyncSnapshot alinanVeri) {
+                if (alinanVeri.hasError)
+                  return Text("aktarim basarasiz");
+                else if (alinanVeri == null)
+                  return CircularProgressIndicator();
+                else {
                   print("gelmesi lazim");
-                    return ListView.builder(
-                      
+                  return ListView.builder(
                       scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: alinanVeri.data.docs.length,
-                    itemBuilder: (context, index){
-                      DocumentSnapshot satirVerisi = alinanVeri.data.docs[index];
+                      shrinkWrap: true,
+                      itemCount: alinanVeri.data.docs.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot satirVerisi =
+                            alinanVeri.data.docs[index];
 
-                      return Padding(padding: EdgeInsets.all(5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Expanded(child: Text(satirVerisi['id'])),
-                            Expanded(child: Text(satirVerisi['product'])),
-                            Expanded(child: Text(satirVerisi['price'])),
-                            
-
-                          ],
-                        ),
-                      );
-                    });
+                        return Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(child: Text(satirVerisi['id'])),
+                              Expanded(child: Text(satirVerisi['product'])),
+                              Expanded(child: Text(satirVerisi['price'])),
+                            ],
+                          ),
+                        );
+                      });
                 }
-                
               },
             )
           ],
@@ -71,9 +67,4 @@ class _FirebaseCrudState extends State<FirebaseCrud> {
       ),
     );
   }
-
-  
-
-  
-
 }

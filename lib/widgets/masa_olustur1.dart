@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/rezerve_pages/RezervePage1.dart';
-
+import '../pages/rezerve_pages/RezervePage2.dart';
 
 //*Masaları oluşturduğumuz Widget
 class MasaOlustur1 extends StatelessWidget {

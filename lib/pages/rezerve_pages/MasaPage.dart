@@ -3,7 +3,7 @@ import 'package:kafe_uygulamasi/widgets/masa_olustur1.dart';
 import 'package:kafe_uygulamasi/widgets/masa_olustur2.dart';
 import 'package:kafe_uygulamasi/widgets/masa_olustur3.dart';
 
-import '../widgets/masa_olustur.dart';
+import '../../widgets/masa_olustur.dart';
 
 class MasaPage extends StatefulWidget {
   const MasaPage({Key? key}) : super(key: key);
