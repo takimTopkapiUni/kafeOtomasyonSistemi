@@ -116,10 +116,10 @@ class _MenuState extends State<Menu> {
                   print("GELMESI LAZIM");
                   return ListView.builder(
                       shrinkWrap: true,
-                      itemCount: alinanVeri.data.doc.length,
+                      itemCount: alinanVeri.data.docs.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot satirVerisi =
-                            alinanVeri.data.doc[index];
+                            alinanVeri.data.docs[index];
 
                         return Padding(
                           padding: const EdgeInsets.all(5),

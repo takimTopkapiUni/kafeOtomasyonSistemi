@@ -1,36 +1,70 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(Masa4Menu());
-}
-
-class Masa4Menu extends StatelessWidget {
+class Masa4Menu extends StatefulWidget {
   const Masa4Menu({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Masa 4 Menü",
-      home: AnaEkran(),
-    );
-  }
+  State<Masa4Menu> createState() => _Masa4MenuState();
 }
 
-class AnaEkran extends StatelessWidget {
-  const AnaEkran({Key? key}) : super(key: key);
-
+class _Masa4MenuState extends State<Masa4Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Masa 4 Menü"),
-      ),
-      body: Container(
-        margin: EdgeInsets.all(50),
-        child: Center(
-          child: Text(''),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: 30,
+              width: 100,
+              color: Colors.green,
+              child: Text("Masa 4 Sepet"),
+            ),
+            StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection('masa4').snapshots(),
+              builder: (BuildContext context, AsyncSnapshot alinanVeri) {
+                if (alinanVeri.hasError) {
+                  return const Text("aktarim basarasiz");
+                } else if (alinanVeri == null) {
+                  return const CircularProgressIndicator();
+                } else {
+                  print("GELMESI LAZIM");
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: alinanVeri.data.docs.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot satirVerisi =
+                            alinanVeri.data.docs[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(child: Text(satirVerisi['id'])),
+                              Expanded(child: Text(satirVerisi['product'])),
+                              Expanded(child: Text(satirVerisi['price'])),
+                              ElevatedButton(
+                                onPressed: () {
+                                  veriSil();
+                                },
+                                child: const Text("Ürünü Sil"),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+void veriSil() {}
