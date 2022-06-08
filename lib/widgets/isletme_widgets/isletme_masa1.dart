@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kafe_uygulamasi/pages/isletme_pages/menu_pages/Masa1Menu.dart';
 
+import '../../pages/musteri_pages/masalar/Masa1/Masa1_Menu.dart';
+
 //*Masaları oluşturduğumuz Widget
 class IsletmeMasa1 extends StatelessWidget {
   const IsletmeMasa1({Key? key, required this.masaNo, required this.doluMu})
@@ -40,7 +42,7 @@ class IsletmeMasa1 extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Masa1Menu()));
+                          builder: (context) => const Masa1_Menu()));
                   print("Masa $masaNo Rezerve Edildi");
                 },
                 child: const Text(
